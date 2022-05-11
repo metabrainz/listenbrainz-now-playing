@@ -1,22 +1,31 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
+  "name": "listenbrainz",
+  "version": "0.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/metabrainz/listenbrainz-server",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "listenbrainz",
+    "musicbrainz",
+    "music",
+    "metadata"
   ],
-  "author": "GitHub",
+  "author": "The MetaBrainz Foundation <support@metabrainz.org>",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^17.2.0"
+    "electron": "^17.3.0",
+    "electron-builder": "^22.14.13"
+  },
+  "build": {
+    "linux": {
+      "category": "music",
+      "target": "deb",
+      "icon": "./build/icon.icns"
+    }
   }
 }

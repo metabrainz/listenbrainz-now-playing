@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, shell} = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -13,7 +13,14 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL('https://listenbrainz.org')
+
+  // TODO: only called for target=_blank links. figure out how to call for any link
+  mainWindow.webContents.setWindowOpenHandler(function(details) {
+    const { url } = details;
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
