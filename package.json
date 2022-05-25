@@ -18,7 +18,7 @@
   "author": "The MetaBrainz Foundation <support@metabrainz.org>",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^17.3.0",
+    "electron": "^19.0.0",
     "electron-builder": "^22.14.13"
   },
   "build": {
