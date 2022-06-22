@@ -19,7 +19,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^17.3.0",
-    "electron-builder": "^22.14.13"
+    "electron-builder": "^23.1.0"
   },
   "build": {
     "linux": {
