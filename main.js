@@ -13,7 +13,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadURL('https://listenbrainz.org/playing-now/')
+  mainWindow.loadURL('https://listenbrainz.org/listening-now/')
 
   // TODO: only called for target=_blank links. figure out how to call for any link
   mainWindow.webContents.setWindowOpenHandler(function(details) {
