@@ -26,6 +26,10 @@
       "category": "music",
       "target": "deb",
       "icon": "./build/icon.icns"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "./build/icon.ico"
     }
   }
 }
