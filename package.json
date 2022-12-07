@@ -1,7 +1,7 @@
 {
   "name": "listenbrainz",
   "version": "0.0.0",
-  "description": "A minimal Electron application",
+  "description": "ListenBrainz Now Playing Viewer",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -24,17 +24,36 @@
   "build": {
     "linux": {
       "category": "music",
-      "target": "deb",
-      "icon": "./build/icon.icns"
+      "target": [
+        "deb",
+        "AppImage"
+      ],
+      "icon": "./assets/icon.icns"
     },
     "win": {
-      "target": "portable",
-      "icon": "./build/icon.ico"
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "./assets/icon.ico"
     },
     "mac": {
-      "target": "dmg",
-      "icon": "./build/icon.icns",
-      "category": "public.app-category.music"
-    }
+      "target": {
+        "target": "default",
+        "arch": [
+          "arm64",
+          "x64"
+        ]
+      },
+      "type": "distribution",
+      "hardenedRuntime": true,
+      "entitlements": "./assets/entitlements.mac.plist",
+      "entitlementsInherit": "./assets/entitlements.mac.plist",
+      "gatekeeperAssess": false
+    },
+    "afterSign": "./notarize.js"
+  },
+  "dependencies": {
+    "@electron/notarize": "^1.2.3"
   }
 }
