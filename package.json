@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "publish": "electron-builder -- --publish always --win --mac --linux",
+    "distAll": "electron-builder -- --publish always --win --mac --linux",
     "dist": "electron-builder"
   },
   "repository": "https://github.com/metabrainz/listenbrainz-server",
