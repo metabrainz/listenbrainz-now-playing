@@ -54,7 +54,7 @@
     "afterSign": "./notarize.js"
   },
   "dependencies": {
-    "@electron/asar": "^3.2.2",
+    "@electron/asar": "^3.2.4",
     "@electron/notarize": "^1.2.3",
     "@electron/osx-sign": "^1.0.4"
   }
