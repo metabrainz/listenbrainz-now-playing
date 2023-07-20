@@ -36,9 +36,5 @@ jobs:
 
       - name: Build and publish binaries
         env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASS }}
-          CSC_LINK: ${{ secrets.CSC_LINK }}
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build-${{ matrix.name }}
