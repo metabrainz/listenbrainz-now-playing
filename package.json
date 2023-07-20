@@ -1,11 +1,13 @@
 {
   "name": "listenbrainz",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "ListenBrainz Now Playing Viewer",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "release": "electron-builder",
+    "build-linux": "electron-builder -l",
+    "build-macos": "electron-builder -m",
+    "build-windows": "electron-builder -w",
     "dist": "electron-builder"
   },
   "homepage": "https://listenbrainz.org/",
