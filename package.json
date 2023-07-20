@@ -5,10 +5,13 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "distAll": "electron-builder -- --publish always --win --mac --linux",
+    "release": "electron-builder",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/metabrainz/listenbrainz-server",
+  "repository": {
+    "type": "git",
+    "url": "github.com/metabrainz/listenbrainz-now-playing.git"
+  },
   "keywords": [
     "listenbrainz",
     "musicbrainz",
@@ -18,10 +21,11 @@
   "author": "The MetaBrainz Foundation <support@metabrainz.org>",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^22.0.0",
+    "electron": "^25.3.1",
     "electron-builder": "^23.6.0"
   },
   "build": {
+    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
     "linux": {
       "category": "music",
       "target": [
@@ -54,8 +58,8 @@
     "afterSign": "./notarize.js"
   },
   "dependencies": {
-    "@electron/asar": "^3.2.2",
-    "@electron/notarize": "^1.2.3",
+    "@electron/asar": "^3.2.4",
+    "@electron/notarize": "^2.1.0",
     "@electron/osx-sign": "^1.0.4"
   }
 }
