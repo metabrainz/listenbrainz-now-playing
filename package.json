@@ -8,6 +8,7 @@
     "release": "electron-builder",
     "dist": "electron-builder"
   },
+  "homepage": "https://listenbrainz.org/",
   "repository": {
     "type": "git",
     "url": "github.com/metabrainz/listenbrainz-now-playing.git"
