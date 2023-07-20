@@ -17,6 +17,7 @@ jobs:
             name: windows
           - os: macos-latest
             name: macos
+      fail-fast: false
 
     runs-on: ${{ matrix.os }}
 
