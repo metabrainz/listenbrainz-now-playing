@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ListenBrainz
+Comment=ListenBrainz Now Playing Viewer
+Exec=listenbrainz %U
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=${SNAP}/meta/gui/listenbrainz.png
+Categories=AudioVideo;Audio;
