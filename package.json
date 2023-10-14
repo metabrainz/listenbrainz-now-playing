@@ -63,6 +63,6 @@
   "dependencies": {
     "@electron/asar": "^3.2.4",
     "@electron/notarize": "^2.1.0",
-    "@electron/osx-sign": "^1.0.4"
+    "@electron/osx-sign": "^1.0.5"
   }
 }
