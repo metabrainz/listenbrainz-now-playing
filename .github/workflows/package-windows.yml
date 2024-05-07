@@ -1,0 +1,53 @@
+name: Publish executables
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+
+jobs:
+
+  publish:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+
+      - name: Install Node and NPM
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare code signing certificate
+        run: |
+          If ($Env:CODESIGN_P12_URL -And $Env:AWS_ACCESS_KEY_ID) {
+            msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+            aws s3 cp "$Env:CODESIGN_P12_URL" .\codesign.pfx
+            Add-Content $env:GITHUB_ENV "CODESIGN=1"
+          } Else {
+            Write-Output "::warning::No code signing certificate available, skipping code signing."
+          }
+        env:
+          AWS_DEFAULT_REGION: eu-central-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CODESIGN_P12_URL: ${{ secrets.CODESIGN_P12_URL }}
+
+      - name: Build and publish binaries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WIN_CSC_LINK: .\codesign.pfx
+          WIN_CSC_PASSWORD: ${{ secrets.CODESIGN_P12_PASSWORD }}
+        run: npm run build-${{ matrix.name }}
+
+      - name: Cleanup
+        if: env.CODESIGN == '1'
+        run: Remove-Item .\codesign.pfx

@@ -15,8 +15,6 @@ jobs:
         include:
           - os: ubuntu-latest
             name: linux
-          - os: windows-latest
-            name: windows
           - os: macos-latest
             name: macos
       fail-fast: false
@@ -39,6 +37,4 @@ jobs:
       - name: Build and publish binaries
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CSC_LINK: ${{ secrets.CODESIGN_P12_URL }}
-          CSC_PASSWORD: ${{ secrets.CODESIGN_P12_PASSWORD }}
         run: npm run build-${{ matrix.name }}
