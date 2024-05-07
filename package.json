@@ -58,10 +58,8 @@
       "hardenedRuntime": true,
       "entitlements": "./assets/entitlements.mac.plist",
       "entitlementsInherit": "./assets/entitlements.mac.plist",
-      "gatekeeperAssess": false,
-      "notarize": false
-    },
-    "afterSign": "./notarize.js"
+      "gatekeeperAssess": false
+    }
   },
   "dependencies": {
     "@electron/asar": "^3.2.10",
