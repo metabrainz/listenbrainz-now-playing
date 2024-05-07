@@ -46,7 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WIN_CSC_LINK: .\codesign.pfx
           WIN_CSC_PASSWORD: ${{ secrets.CODESIGN_P12_PASSWORD }}
-        run: npm run build-${{ matrix.name }}
+        run: npm run build-windows
 
       - name: Cleanup
         if: env.CODESIGN == '1'
