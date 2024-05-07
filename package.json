@@ -42,7 +42,8 @@
         "portable",
         "nsis"
       ],
-      "icon": "./assets/icon.ico"
+      "icon": "./assets/icon.ico",
+      "publisherName": "MetaBrainz Foundation Inc."
     },
     "mac": {
       "target": {
