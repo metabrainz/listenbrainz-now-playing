@@ -45,10 +45,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           APPLE_ID: ${{ secrets.APPLE_ID_USER }}
-          APPLE_ID_TEAM: ${{ secrets.APPLE_ID_TEAM }}
-          APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_ID_TEAM }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           CSC_LINK: ./appledev.p12
           CSC_KEY_PASSWORD: ${{ secrets.CODESIGN_MACOS_P12_PASSWORD }}
 
       - name: Cleanup
         run: rm -f ./appledev.p12
+        if: always()
