@@ -1,0 +1,53 @@
+name: Publish macOS executables
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+
+  publish:
+
+    runs-on: macos-11
+
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v4
+
+      - name: Install Node and NPM
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare code signing certificate
+        run: |
+          if [ -n "$CODESIGN_MACOS_P12_URL" ] && [ -n "$AWS_ACCESS_KEY_ID" ]; then
+            curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+            sudo installer -pkg AWSCLIV2.pkg -target /
+            aws s3 cp "$CODESIGN_MACOS_P12_URL" ./appledev.p12
+          else
+            echo "::warning::No code signing certificate available, skipping code signing."
+          fi
+        env:
+          AWS_DEFAULT_REGION: eu-central-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CODESIGN_MACOS_P12_URL: ${{ secrets.CODESIGN_MACOS_P12_URL }}
+
+      - name: Build and publish binaries
+        run: npm run build-macos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPLE_ID: ${{ secrets.APPLE_ID_USER }}
+          APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASSWORD }}
+          CSC_LINK: ./appledev.p12
+          CSC_KEY_PASSWORD: ${{ secrets.CODESIGN_MACOS_P12_PASSWORD }}
+
+      - name: Cleanup
+        run: rm -f ./appledev.p12
