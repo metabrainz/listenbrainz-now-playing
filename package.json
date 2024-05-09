@@ -24,7 +24,7 @@
   "author": "The MetaBrainz Foundation <support@metabrainz.org>",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^30.0.2",
+    "electron": "^30.0.3",
     "electron-builder": "^v25.0.0-alpha.6"
   },
   "build": {
